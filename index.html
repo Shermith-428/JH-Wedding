@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Hosanna & Jason — August 8th, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --cream:#d1c2ab;
+  --green:#113c0d;
+  --burgundy:#950529;
+  --espresso:#400A16;
+  --ivory:#f5f0e8;
+  --gold:#c9a84c;
+}
+html{scroll-behavior:smooth}
+body{background:var(--espresso);color:var(--cream);font-family:'Lato',sans-serif;overflow-x:hidden}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--espresso)}
+::-webkit-scrollbar-thumb{background:var(--burgundy)}
+
+/* ─── NAV ─── */
+nav{position:fixed;top:0;width:100%;z-index:100;padding:1.2rem 3rem;display:flex;justify-content:space-between;align-items:center;transition:background .4s}
+nav.scrolled{background:rgba(64,10,22,.95);backdrop-filter:blur(12px)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.4rem;letter-spacing:.2em;color:var(--cream)}
+.nav-links{display:flex;gap:2.5rem;list-style:none}
+.nav-links a{color:var(--cream);text-decoration:none;font-size:.85rem;letter-spacing:.2em;text-transform:uppercase;opacity:.8;transition:opacity .3s}
+.nav-links a:hover{opacity:1}
+
+/* ─── HERO ─── */
+#hero{height:100vh;width:100%;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;max-width:100%;margin:0;padding:0}
+.hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.hero-bg{position:absolute;inset:0;width:100%;height:100%;background:radial-gradient(ellipse at center,rgba(149,5,41,.25) 0%,rgba(64,10,22,.95) 65%,#400A16 100%);z-index:1}
+.hero-content{position:relative;z-index:2}
+.hero-eyebrow{font-size:.75rem;letter-spacing:.4em;text-transform:uppercase;color:var(--cream);opacity:.6;margin-bottom:1.5rem;animation:fadeUp .8s .2s both}
+.hero-names{font-family:'Playfair Display',serif;font-size:clamp(3.5rem,9vw,8rem);font-weight:500;font-style:italic;line-height:1;color:var(--ivory);text-shadow:0 0 60px rgba(201,168,76,.3);animation:fadeUp .8s .4s both}
+.hero-amp{color:var(--burgundy);font-size:.8em}
+.hero-date{font-size:1rem;letter-spacing:.5em;text-transform:uppercase;margin-top:1.5rem;color:var(--cream);opacity:.7;animation:fadeUp .8s .6s both}
+.hero-line{width:80px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:1.8rem auto;animation:fadeUp .8s .7s both}
+.hero-sub{font-size:1.1rem;font-style:italic;opacity:.65;animation:fadeUp .8s .8s both}
+.scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:.5rem;opacity:.5;animation:bounce 2s infinite}
+.scroll-hint span{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase}
+.scroll-hint::before{content:'';width:1px;height:40px;background:var(--cream)}
+
+/* ─── AUDIO PLAYER ─── */
+.audio-player{position:fixed;bottom:1.8rem;right:1.8rem;z-index:200;display:flex;align-items:center;gap:.8rem;background:rgba(21,5,19,.85);backdrop-filter:blur(16px);border:1px solid rgba(201,168,76,.25);border-radius:50px;padding:.6rem 1.2rem .6rem .6rem;animation:fadeUp .8s 1s both}
+.play-btn{width:42px;height:42px;border-radius:50%;background:var(--burgundy);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .2s,background .2s;flex-shrink:0}
+.play-btn:hover{background:#b3063a;transform:scale(1.08)}
+.play-btn svg{width:16px;height:16px;fill:var(--ivory);margin-left:2px}
+.play-btn.playing svg.icon-play{display:none}
+.play-btn.playing svg.icon-pause{display:block!important}
+.audio-info{display:flex;flex-direction:column}
+.audio-title{font-size:.7rem;letter-spacing:.15em;color:var(--cream);opacity:.9}
+.audio-artist{font-size:.65rem;opacity:.5;color:var(--cream)}
+.audio-bars{display:flex;align-items:flex-end;gap:2px;height:16px;margin-left:.4rem}
+.audio-bars span{width:3px;background:var(--burgundy);border-radius:2px;animation:none;min-height:3px}
+.audio-bars.active span:nth-child(1){animation:bar 0.8s .0s infinite alternate}
+.audio-bars.active span:nth-child(2){animation:bar 0.8s .15s infinite alternate}
+.audio-bars.active span:nth-child(3){animation:bar 0.8s .3s infinite alternate}
+.audio-bars.active span:nth-child(4){animation:bar 0.8s .45s infinite alternate}
+
+/* ─── SECTION BASE ─── */
+section{padding:6rem 2rem;max-width:1100px;margin:0 auto}
+#hero{max-width:100%;margin:0;padding:0}
+.section-tag{font-size:.7rem;letter-spacing:.4em;text-transform:uppercase;color:var(--burgundy);margin-bottom:.8rem}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:500;font-style:italic;color:var(--ivory);line-height:1.1;margin-bottom:1.5rem}
+.divider{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:1.5rem 0}
+
+/* ─── INVITE CARD 3D ─── */
+#invite{display:flex;justify-content:center;padding:5rem 2rem}
+.card-scene{width:340px;height:220px;perspective:900px}
+.card-3d{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .1s ease-out;cursor:pointer}
+.card-face{position:absolute;inset:0;border-radius:4px;backface-visibility:hidden;display:flex;align-items:center;justify-content:center}
+.card-front{background:var(--ivory);border:1px solid rgba(201,168,76,.4);box-shadow:0 30px 80px rgba(21,5,19,.6)}
+.card-back{background:var(--cream);transform:rotateY(180deg)}
+.card-ornament{position:absolute;inset:8px;border:1px solid rgba(149,5,41,.2);border-radius:3px;pointer-events:none}
+.card-inner{text-align:center;padding:1.5rem;color:var(--espresso)}
+.card-inner h2{font-family:'Playfair Display',serif;font-size:1.8rem;font-style:italic;margin-bottom:.3rem}
+.card-inner p{font-size:.8rem;letter-spacing:.15em;opacity:.7}
+.card-inner .date{margin-top:.6rem;font-size:.9rem;letter-spacing:.1em}
+
+/* ─── LOVE STORY CHAPTERS ─── */
+#story{max-width:1100px;margin:0 auto;padding:6rem 2rem}
+.story-header{text-align:center;margin-bottom:4rem}
+.chapter{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-bottom:5rem;opacity:0;transition:opacity .85s cubic-bezier(.25,.8,.25,1),transform .85s cubic-bezier(.25,.8,.25,1)}
+.chapter.from-right{transform:translateX(90px)}
+.chapter.from-left{transform:translateX(-90px)}
+.chapter.visible{opacity:1;transform:translateX(0)}
+.ch-text{padding:1rem 0}
+.ch-label{font-size:.65rem;letter-spacing:.45em;text-transform:uppercase;color:var(--burgundy);margin-bottom:.8rem}
+.ch-title{font-family:'Playfair Display',serif;font-size:2rem;font-style:italic;color:var(--ivory);margin-bottom:1.2rem;line-height:1.2}
+.ch-body{font-size:1rem;line-height:2;opacity:.82;font-weight:300}
+.ch-body em{color:var(--ivory);font-style:italic}
+.ch-deco{display:flex;align-items:center;justify-content:center}
+.ch-ornament{width:180px;height:180px;border-radius:50%;border:1px solid rgba(201,168,76,.25);display:flex;align-items:center;justify-content:center;position:relative;flex-shrink:0;background:rgba(149,5,41,.05);animation:bubble 4s ease-in-out infinite}
+.ch-ornament::before{content:'';position:absolute;inset:14px;border-radius:50%;border:1px solid rgba(149,5,41,.18)}
+.ch-ornament::after{content:'';position:absolute;inset:-8px;border-radius:50%;border:1px solid rgba(201,168,76,.08);animation:bubble 4s ease-in-out infinite reverse}
+.ch-ornament svg{position:relative;z-index:1}
+.chapter:nth-child(2) .ch-ornament{animation-duration:3.8s;animation-delay:.3s}
+.chapter:nth-child(3) .ch-ornament{animation-duration:4.4s;animation-delay:.6s}
+.chapter:nth-child(4) .ch-ornament{animation-duration:3.6s;animation-delay:.9s}
+.chapter:nth-child(5) .ch-ornament{animation-duration:4.2s;animation-delay:.2s}
+@keyframes bubble{
+  0%,100%{transform:translateY(0) scale(1);box-shadow:0 8px 32px rgba(149,5,41,.15)}
+  33%{transform:translateY(-14px) scale(1.03);box-shadow:0 22px 40px rgba(149,5,41,.22)}
+  66%{transform:translateY(-6px) scale(.98);box-shadow:0 14px 28px rgba(149,5,41,.12)}
+}
+@media(max-width:700px){
+  .chapter{grid-template-columns:1fr;gap:1.5rem}
+  .chapter .ch-deco{display:none}
+}
+
+/* ─── LOCATION ─── */
+.map-wrap{border:1px solid rgba(209,194,171,.15);border-radius:4px;overflow:hidden;margin-bottom:2rem}
+.btn-directions{display:inline-block;margin-top:.5rem;background:var(--burgundy);color:var(--ivory);padding:.75rem 2rem;font-family:'Lato',sans-serif;font-size:.85rem;letter-spacing:.18em;text-decoration:none;border-radius:2px;transition:background .3s,transform .2s}
+.btn-directions:hover{background:#b3063a;transform:translateY(-2px)}
+
+/* ─── GALLERY ─── */
+#gallery{max-width:1200px;margin:0 auto;padding:6rem 2rem}
+.gallery-grid{columns:3;gap:12px;margin-top:2rem}
+.gallery-grid img{width:100%;display:block;margin-bottom:12px;border-radius:2px;cursor:pointer;opacity:0;transform:translateY(30px);transition:opacity .6s,transform .6s,filter .4s;filter:brightness(.88) sepia(.08)}
+.gallery-grid img.visible{opacity:1;transform:translateY(0)}
+.gallery-grid img:hover{filter:brightness(1) sepia(0);transform:scale(1.03) translateY(0)}
+.lightbox{display:none;position:fixed;inset:0;z-index:300;background:rgba(64,10,22,.97);align-items:center;justify-content:center}
+.lightbox.open{display:flex}
+.lightbox img{max-width:90vw;max-height:90vh;border-radius:4px;box-shadow:0 0 80px rgba(149,5,41,.4)}
+.lb-close{position:absolute;top:2rem;right:2rem;cursor:pointer;opacity:.7;transition:opacity .2s}
+.lb-close:hover{opacity:1}
+
+
+
+/* ─── GIFTS ─── */
+.qr-wrap{margin-top:3rem}
+.gifts-row{display:flex;align-items:center;justify-content:center;gap:2rem;flex-wrap:wrap;margin-top:3rem}
+.qr-box{width:200px;height:200px;border:1px solid rgba(209,194,171,.2);border-radius:4px;padding:12px;background:var(--ivory);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.qr-img{width:100%;height:100%;object-fit:contain;display:block}
+.gifts-divider{width:1px;height:200px;background:linear-gradient(to bottom,transparent,rgba(209,194,171,.35),transparent);flex-shrink:0}
+.bank-scene{width:200px;height:200px;perspective:900px;flex-shrink:0}
+.bank-card{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.25,.8,.25,1);cursor:pointer}
+.bank-face{position:absolute;inset:0;border-radius:8px;backface-visibility:hidden;display:flex;align-items:center;justify-content:center;border:1px solid rgba(201,168,76,.25)}
+.bank-front{background:linear-gradient(135deg,var(--burgundy),#6b0a1e);box-shadow:0 20px 50px rgba(0,0,0,.35)}
+.bank-back{background:var(--ivory);transform:rotateY(180deg)}
+.bank-front-inner{text-align:center;color:var(--ivory);padding:1.2rem}
+.bank-front-inner p{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;opacity:.6;margin-bottom:.6rem}
+.bank-front-inner h4{font-family:'Playfair Display',serif;font-size:1.3rem;font-style:italic;line-height:1.3}
+.bank-front-inner span{font-size:.65rem;opacity:.5;margin-top:.6rem;display:block;letter-spacing:.15em}
+.bank-back-inner{padding:1.2rem;text-align:left;color:var(--espresso);width:100%}
+.bank-back-inner p{font-size:.62rem;line-height:1.9;color:#400A16}
+.bank-back-inner .bl{font-weight:700;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;opacity:.5;display:block;margin-bottom:.1rem}
+.bank-back-inner .bv{font-size:.75rem;font-weight:700;color:#400A16;display:block;margin-bottom:.7rem}
+
+/* ─── FOOTER ─── */
+footer{text-align:center;padding:4rem 2rem;border-top:1px solid rgba(209,194,171,.1);opacity:.5;font-size:.85rem;letter-spacing:.1em;font-family:'Lato',sans-serif}
+
+/* ─── PARTICLES CANVAS ─── */
+#particles{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.6}
+
+/* ─── REVEAL ANIMATIONS ─── */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ─── KEYFRAMES ─── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+@keyframes bar{from{height:3px}to{height:14px}}
+@keyframes floatRing{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-12px) rotate(4deg)}}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:700px){
+  #details{grid-template-columns:1fr}
+  .gallery-grid{columns:2}
+  nav{padding:.8rem 1.2rem}
+  .nav-links{gap:1.2rem}
+  .nav-links a{font-size:.7rem}
+}
+</style>
+</head>
+<body>
+
+<!-- FLOATING PARTICLES -->
+<canvas id="particles"></canvas>
+
+<!-- NAV -->
+<nav id="nav">
+  <span class="nav-logo">H & J</span>
+  <ul class="nav-links">
+    <li><a href="#story">Love Story</a></li>
+    <li><a href="#location">Location</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+
+  </ul>
+</nav>
+
+<!-- AUDIO PLAYER -->
+<div class="audio-player" id="audioPlayer">
+  <button class="play-btn" id="playBtn" onclick="toggleAudio()">
+    <svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+    <svg class="icon-pause" style="display:none" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+  </button>
+  <div class="audio-info">
+    <span class="audio-title">Unforgettable</span>
+    <span class="audio-artist">Michael Bublé</span>
+  </div>
+  <div class="audio-bars" id="audioBars">
+    <span></span><span></span><span></span><span></span>
+  </div>
+</div>
+<audio id="weddingAudio" loop>
+  <source src="audio/Michael Buble - Unforgettable (Lyrics).mp3" type="audio/mpeg"/>
+</audio>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas class="hero-canvas" id="heroCanvas"></canvas>
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">We're getting married</p>
+    <h1 class="hero-names">Hosanna <span class="hero-amp">&</span> Jason</h1>
+    <p class="hero-date">August 8, 2026</p>
+    <div class="hero-line"></div>
+    <p class="hero-sub">Join us as we begin forever</p>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span></div>
+</section>
+
+<!-- 3D INVITE CARD -->
+<div id="invite">
+  <div class="card-scene">
+    <div class="card-3d" id="card3d">
+      <div class="card-face card-front">
+        <div class="card-ornament"></div>
+        <div class="card-inner">
+          <p style="font-size:.65rem;letter-spacing:.3em;opacity:.5;margin-bottom:.5rem">YOU ARE INVITED</p>
+          <h2>H & J</h2>
+          <p class="date">August 8th, 2026</p>
+          <p style="margin-top:.4rem;font-size:.75rem;opacity:.55">Hover to reveal · Click to flip</p>
+        </div>
+      </div>
+      <div class="card-face card-back">
+        <div class="card-inner" style="color:var(--espresso)">
+          <p style="font-size:.9rem;font-style:italic;line-height:1.7;opacity:.8">"We're so excited to share this special moment with you. Your presence means the world to us."</p>
+          <p style="margin-top:1rem;font-family:'Playfair Display',serif;font-size:1.2rem">With Love, Hosanna & Jason</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LOVE STORY -->
+<div style="background:rgba(17,60,13,.05);padding:4rem 0">
+<section id="story">
+
+  <div class="story-header reveal">
+    <p class="section-tag">Their Journey</p>
+    <h2 class="section-title">Our Love Story</h2>
+    <div class="divider" style="margin:1.5rem auto"></div>
+  </div>
+
+  <div class="chapter from-right">
+    <div class="ch-text">
+      <p class="ch-label">Chapter One</p>
+      <h3 class="ch-title">Where It All Began</h3>
+      <p class="ch-body">It started the way the most beautiful things often do. Not with grand gestures or perfectly planned moments, but with something quiet and unhurried. Two people, the same church, and a God who clearly had a plan neither of them saw coming. There was something about Hosanna that Jason couldn't quite shake. And something about Jason that made Hosanna smile a little longer than she meant to.</p>
+    </div>
+    <div class="ch-deco"><div class="ch-ornament"><svg viewBox="0 0 24 24" width="52" height="52" fill="none" stroke="#d1c2ab" stroke-width="1.2"><path d="M12 2L3 9v13h6v-5h6v5h6V9L12 2z"/><path d="M9 22V12h6v10"/><path d="M12 2v4"/><circle cx="12" cy="7" r="1" fill="#d1c2ab"/></svg></div></div>
+  </div>
+
+  <div class="chapter from-left">
+    <div class="ch-deco"><div class="ch-ornament"><svg viewBox="0 0 24 24" width="52" height="52" fill="none" stroke="#d1c2ab" stroke-width="1.2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div></div>
+    <div class="ch-text">
+      <p class="ch-label">Chapter Two</p>
+      <h3 class="ch-title">Two People Who Just Fit</h3>
+      <p class="ch-body">Jason's gentleness is the kind that wraps around you quietly, making Hosanna feel safe, loved, and completely at home. He is her constant, her steady place to land, and her favourite person. He makes her laugh unlike anyone ever has. For Jason, Hosanna is nothing short of life-changing. She has drawn him closer to his calling, made him want to push himself, and shown him what it looks like to be truly known and loved. They don't just love each other &mdash; they bring out the best in each other, every single day.</p>
+    </div>
+  </div>
+
+  <div class="chapter from-right">
+    <div class="ch-text">
+      <p class="ch-label">Chapter Three</p>
+      <h3 class="ch-title">The Proposal</h3>
+      <p class="ch-body">Jason had been quietly planning for nearly a year, sourcing the ring long before Hosanna had any idea. With the help of friends and family who deserve an award for keeping a secret this big, he pulled it off completely. She walked in with no idea what she was walking into. When the excitement took over, she missed Jason pouring his heart out. After an awkward pause she asked him to pop the question. He stared at her and said, <em>&ldquo;I DID!! Will you marry me?!&rdquo;</em> She said yes. And then they both burst out laughing &mdash; because of course that is exactly how their story would go.</p>
+    </div>
+    <div class="ch-deco"><div class="ch-ornament"><svg viewBox="0 0 24 24" width="52" height="52" fill="none" stroke="#d1c2ab" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l2 6-8 13L4 9z"/><path d="M4 9h16"/><path d="M12 3l2 6-2 13-2-13z"/></svg></div></div>
+  </div>
+
+  <div class="chapter from-left">
+    <div class="ch-deco"><div class="ch-ornament"><svg viewBox="0 0 24 24" width="52" height="52" fill="none" stroke="#d1c2ab" stroke-width="1.2" stroke-linecap="round"><path d="M12 22s-8-5.25-8-11a5 5 0 0 1 8-4 5 5 0 0 1 8 4c0 5.75-8 11-8 11z"/><path d="M8 10c0-1.66 1.34-3 3-3" stroke-opacity=".5"/></svg></div></div>
+    <div class="ch-text">
+      <p class="ch-label">Chapter Four</p>
+      <h3 class="ch-title">Forever Starts Here</h3>
+      <p class="ch-body">Looking back, it is almost hard to believe how far they have come. And yet, neither of them can imagine a version of their story that ends any other way. From the very beginning, this was always end game. On the 8th of August 2026, surrounded by everyone who loves them, Jason and Hosanna will stand before God and make it official. Their story is a reminder that love is not just a feeling &mdash; it is a choice, made over and over again. He is the reason they have come this far, and the foundation of everything still to come.</p>
+    </div>
+  </div>
+
+</section>
+</div>
+
+<!-- LOCATION -->
+<section id="location" class="reveal" style="max-width:900px;margin:0 auto;padding:6rem 2rem;text-align:center">
+  <p class="section-tag">Find Us</p>
+  <h2 class="section-title">The Venue</h2>
+  <div class="divider" style="margin:1.5rem auto"></div>
+  <div class="venue-name-block" style="margin-bottom:2rem">
+    <p style="font-family:'Playfair Display',serif;font-size:2rem;font-style:italic;color:var(--ivory);margin-bottom:.4rem">St. Andrew's Scots Kirk</p>
+    <p style="font-size:.9rem;opacity:.6;letter-spacing:.12em">Colombo, Sri Lanka</p>
+  </div>
+  <div class="map-wrap">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.9!2d79.8534!3d6.9157!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae25940a3b30d41%3A0xa97a3c1e35f495e6!2sSt.%20Andrew&#39;s%20Scots%20Kirk!5e0!3m2!1sen!2slk!4v1"
+      width="100%" height="420" style="border:0;border-radius:4px;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+  </div>
+  <a class="btn-directions" href="https://www.google.com/maps?ftid=0x3ae25940a3b30d41:0xa97a3c1e35f495e6" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:7px"><path d="M3 12l19-9-9 19-2-8-8-2z"/></svg>
+    Get Directions
+  </a>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="reveal">
+  <p class="section-tag">Memories</p>
+  <h2 class="section-title">Our Gallery</h2>
+  <div class="divider"></div>
+  <div class="gallery-grid" id="galleryGrid"></div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <span class="lb-close" onclick="closeLightbox()"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#d1c2ab" stroke-width="1.8" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
+  <img id="lbImg" src="" alt=""/>
+</div>
+
+
+
+<!-- GIFTS -->
+<section id="gifts" class="reveal" style="max-width:680px;margin:0 auto;padding:6rem 2rem;text-align:center">
+  <p class="section-tag">A Note on Gifts</p>
+  <h2 class="section-title" style="font-size:clamp(1.8rem,4vw,3rem)">From Hosanna & Jason</h2>
+  <div class="divider" style="margin:1.5rem auto"></div>
+  <p style="font-size:1.1rem;line-height:2;opacity:.85;margin-bottom:1rem">Your presence at our celebration is truly the greatest gift we could ask for. The fact that you are here to share in this moment with us means more than words can say.</p>
+  <p style="font-size:1.05rem;line-height:2;opacity:.75">However, if you feel moved to give, we would be deeply grateful for a contribution towards our future together. As we begin this new chapter, your generosity will help us build the life we have always dreamed of.</p>
+  <div class="gifts-row reveal">
+    <div class="qr-box">
+      <img src="bank Qr.jpeg" alt="Payment QR Code" class="qr-img"/>
+    </div>
+    <div class="gifts-divider"></div>
+    <div class="bank-scene">
+      <div class="bank-card">
+        <div class="bank-face bank-front">
+          <div class="bank-front-inner">
+            <p>Tap to reveal</p>
+            <h4>Bank Details</h4>
+            <span>Hover or tap to flip</span>
+          </div>
+        </div>
+        <div class="bank-face bank-back">
+          <div class="bank-back-inner">
+            <span class="bl">Account Name</span>
+            <span class="bv">H S Tissera</span>
+            <span class="bl">Account Number</span>
+            <span class="bv">102006113987</span>
+            <span class="bl">Bank</span>
+            <span class="bv">DFCC Bank</span>
+            <span class="bl">Branch</span>
+            <span class="bv">Ja-ela &mdash; 063</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p style="font-family:'Playfair Display',serif;font-size:1.8rem;font-style:italic;opacity:.8;margin-bottom:.5rem">Hosanna & Jason</p>
+  <p>August 8th, 2026 &nbsp;·&nbsp; Forever starts here</p>
+</footer>
+
+<script>
+// ─── PARTICLES ───
+(function(){
+  const c=document.getElementById('particles');
+  const ctx=c.getContext('2d');
+  let W,H,pts=[];
+  function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight}
+  resize();window.addEventListener('resize',resize);
+  // hearts
+  function heartPath(ctx,x,y,size){
+    ctx.save();ctx.translate(x,y);ctx.scale(size,size);
+    ctx.beginPath();
+    ctx.moveTo(0,-0.5);
+    ctx.bezierCurveTo(0.5,-1,1.2,0.2,0,1);
+    ctx.bezierCurveTo(-1.2,0.2,-0.5,-1,0,-0.5);
+    ctx.closePath();ctx.restore();
+  }
+  for(let i=0;i<55;i++)pts.push({
+    x:Math.random()*1920,
+    y:Math.random()*1080,
+    r:Math.random()*10+5,
+    s:Math.random()*.6+.3,
+    o:Math.random()*.45+.1,
+    drift:Math.random()*1.2-.6,
+    swing:Math.random()*2*Math.PI,
+    swingSpeed:Math.random()*.02+.008,
+    rot:Math.random()*Math.PI*2,
+    rotSpeed:(Math.random()-.5)*.03,
+    color:Math.random()>.5?'#c9a84c':'#950529'
+  });
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    pts.forEach(p=>{
+      p.y+=p.s;
+      p.swing+=p.swingSpeed;
+      p.x+=Math.sin(p.swing)*p.drift;
+      p.rot+=p.rotSpeed;
+      if(p.y>H+20){p.y=-20;p.x=Math.random()*W}
+      ctx.save();
+      ctx.translate(p.x%W,p.y);
+      ctx.rotate(p.rot);
+      ctx.globalAlpha=p.o;
+      heartPath(ctx,0,0,p.r);
+      ctx.fillStyle=p.color;
+      ctx.fill();
+      ctx.restore();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ─── HERO 3D RINGS (WebGL-lite via Canvas) ───
+(function(){
+  const c=document.getElementById('heroCanvas');
+  const ctx=c.getContext('2d');
+  let W,H,t=0;
+  function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight}
+  resize();window.addEventListener('resize',resize);
+  function drawRing(cx,cy,rx,ry,rot,alpha,color){
+    ctx.save();ctx.translate(cx,cy);ctx.rotate(rot);
+    ctx.beginPath();ctx.ellipse(0,0,rx,ry,0,0,Math.PI*2);
+    ctx.strokeStyle=color;ctx.globalAlpha=alpha;ctx.lineWidth=1.5;ctx.stroke();
+    ctx.restore();
+  }
+  function frame(){
+    ctx.clearRect(0,0,W,H);t+=.008;
+    const cx=W/2,cy=H/2;
+    drawRing(cx,cy,120+Math.sin(t)*8,50+Math.sin(t*.7)*4,t*.3,.15,'#d1c2ab');
+    drawRing(cx,cy,160+Math.sin(t*.8)*10,65+Math.cos(t)*5,t*-.2,.1,'#950529');
+    drawRing(cx,cy,90+Math.cos(t)*6,38+Math.sin(t*1.2)*3,t*.5,.12,'#c9a84c');
+    drawRing(cx-40,cy+10,45,45,t*.4,.18,'#c9a84c');
+    drawRing(cx+40,cy+10,45,45,t*.4,.18,'#c9a84c');
+    requestAnimationFrame(frame);
+  }
+  frame();
+})();
+
+// ─── 3D CARD TILT ───
+const card=document.getElementById('card3d');
+const scene=card.parentElement;
+let flipped=false;
+scene.addEventListener('mousemove',e=>{
+  if(flipped)return;
+  const r=scene.getBoundingClientRect();
+  const x=((e.clientX-r.left)/r.width-.5)*30;
+  const y=-((e.clientY-r.top)/r.height-.5)*20;
+  card.style.transform=`rotateY(${x}deg) rotateX(${y}deg)`;
+});
+scene.addEventListener('mouseleave',()=>{if(!flipped)card.style.transform=''});
+card.addEventListener('click',()=>{
+  flipped=!flipped;
+  card.style.transform=flipped?'rotateY(180deg)':'';
+});
+
+// ─── SCROLL NAV ───
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',scrollY>80);
+});
+
+// ─── REVEAL ON SCROLL ───
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}
+}),{threshold:.12});
+document.querySelectorAll('.reveal,.chapter').forEach(el=>obs.observe(el));
+
+// ─── GALLERY ───
+const grid=document.getElementById('galleryGrid');
+const total=26;
+const imgObs=new IntersectionObserver(entries=>entries.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('visible');imgObs.unobserve(e.target)}
+}),{threshold:.1});
+for(let i=1;i<=total;i++){
+  const img=document.createElement('img');
+  img.src=`images/photo${i}.jpeg`;
+  img.alt=`Photo ${i}`;
+  img.loading='lazy';
+  img.style.transitionDelay=`${((i-1)%3)*0.1}s`;
+  img.onclick=()=>openLightbox(`images/photo${i}.jpeg`);
+  grid.appendChild(img);
+  imgObs.observe(img);
+}
+function openLightbox(src){
+  document.getElementById('lbImg').src=src;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open')}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target===this)closeLightbox()});
+
+
+
+// ─── BANK CARD FLIP ───
+const bankCard=document.querySelector('.bank-card');
+let bankFlipped=false;
+bankCard.addEventListener('click',()=>{
+  bankFlipped=!bankFlipped;
+  bankCard.style.transform=bankFlipped?'rotateY(180deg)':'';
+});
+const audio=document.getElementById('weddingAudio');
+const playBtn=document.getElementById('playBtn');
+const bars=document.getElementById('audioBars');
+function toggleAudio(){
+  if(audio.paused){
+    audio.play().then(()=>{playBtn.classList.add('playing');bars.classList.add('active')}).catch(()=>{});
+  }else{
+    audio.pause();playBtn.classList.remove('playing');bars.classList.remove('active');
+  }
+}
+</script>
+</body>
+</html>
