@@ -72,32 +72,7 @@ section{padding:6rem 2rem;max-width:1100px;margin:0 auto}
 .section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:500;font-style:italic;color:var(--ivory);line-height:1.1;margin-bottom:1.5rem}
 .divider{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:1.5rem 0}
 
-/* ─── CARD OPENING INTRO ─── */
-#intro-overlay{position:fixed;inset:0;z-index:999;display:none;align-items:center;justify-content:center;background:#400A16;pointer-events:all}
-.intro-card{width:min(340px,88vw);height:220px;position:relative;transform-style:preserve-3d;animation:cardOpen .5s 0.1s cubic-bezier(.4,0,.2,1) forwards;opacity:0}
-.intro-top,.intro-bottom{position:absolute;left:0;width:100%;height:50%;overflow:hidden;display:flex;align-items:center;justify-content:center}
-.intro-top{top:0;border-radius:8px 8px 0 0;transform-origin:top center;animation:flapUp .55s .7s cubic-bezier(.4,0,.2,1) forwards;background:linear-gradient(160deg,#f9f4ec,#ede4d3);border:1px solid rgba(201,168,76,.5);box-shadow:0 -8px 30px rgba(0,0,0,.25)}
-.intro-bottom{bottom:0;border-radius:0 0 8px 8px;background:linear-gradient(160deg,#f0e8d8,#e8dcc8);border:1px solid rgba(201,168,76,.4);border-top:none;box-shadow:0 20px 60px rgba(0,0,0,.45)}
-.intro-top-inner{text-align:center;padding:.5rem}
-.intro-top-inner p{font-size:.55rem;letter-spacing:.4em;text-transform:uppercase;color:#400A16;opacity:.5}
-.intro-bottom-inner{text-align:center;padding:.8rem}
-.intro-bottom-inner p{font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:#400A16;opacity:.45}
-.intro-gold-line{width:50px;height:1px;background:linear-gradient(90deg,transparent,#c9a84c,transparent);margin:.4rem auto}
-.intro-corner{position:absolute;width:28px;height:28px;opacity:.5}
-.intro-corner svg{width:100%;height:100%}
-.intro-corner.tl{top:6px;left:6px}
-.intro-corner.tr{top:6px;right:6px;transform:scaleX(-1)}
-.intro-corner.bl{bottom:6px;left:6px;transform:scaleY(-1)}
-.intro-corner.br{bottom:6px;right:6px;transform:scale(-1)}
-.intro-seal{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;opacity:0;animation:sealFade .3s .5s forwards}
-.intro-bow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;opacity:0;animation:sealFade .4s .65s forwards;filter:drop-shadow(0 4px 12px rgba(149,5,41,.6))}
-#intro-overlay.done{animation:overlayFade .5s forwards}
-@keyframes cardOpen{0%{transform:scale(.82) rotateX(6deg);opacity:0}100%{transform:scale(1) rotateX(0);opacity:1}}
-@keyframes flapUp{0%{transform:rotateX(0deg)}100%{transform:rotateX(-175deg)}}
-@keyframes sealFade{0%{opacity:0;transform:translate(-50%,-50%) scale(.5)}100%{opacity:1;transform:translate(-50%,-50%) scale(1)}}
-@keyframes overlayFade{0%{opacity:1}100%{opacity:0;visibility:hidden;pointer-events:none}}
-@media(min-width:901px){#intro-overlay{display:none!important}}
-@media(max-width:900px){#intro-overlay{display:flex}}
+
 
 
 /* ─── LOVE STORY CHAPTERS ─── */
@@ -269,44 +244,6 @@ footer{text-align:center;padding:4rem 2rem;border-top:1px solid rgba(209,194,171
 </head>
 <body>
 
-<!-- INTRO CARD OVERLAY -->
-<div id="intro-overlay">
-  <div class="intro-card">
-    <div class="intro-top">
-      <div class="intro-corner tl"><svg viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.2"><path d="M2 2h8v2H4v6H2z"/><circle cx="6" cy="6" r="1.5" fill="#c9a84c"/></svg></div>
-      <div class="intro-corner tr"><svg viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.2"><path d="M2 2h8v2H4v6H2z"/><circle cx="6" cy="6" r="1.5" fill="#c9a84c"/></svg></div>
-      <div class="intro-top-inner">
-        <p>You are cordially invited</p>
-        <div class="intro-gold-line"></div>
-      </div>
-    </div>
-    <div class="intro-bottom">
-      <div class="intro-corner bl"><svg viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.2"><path d="M2 2h8v2H4v6H2z"/><circle cx="6" cy="6" r="1.5" fill="#c9a84c"/></svg></div>
-      <div class="intro-corner br"><svg viewBox="0 0 24 24" fill="none" stroke="#c9a84c" stroke-width="1.2"><path d="M2 2h8v2H4v6H2z"/><circle cx="6" cy="6" r="1.5" fill="#c9a84c"/></svg></div>
-      <div class="intro-bottom-inner">
-        <div class="intro-gold-line"></div>
-        <p>August 8th, 2026</p>
-      </div>
-    </div>
-    <div class="intro-seal"><svg viewBox="0 0 24 24"><path d="M12 2l1.8 5.4H20l-4.9 3.6 1.8 5.4L12 13l-4.9 3.4 1.8-5.4L4 7.4h6.2z"/></svg></div>
-    <div class="intro-bow">
-      <svg viewBox="0 0 80 50" width="80" height="50" fill="none">
-        <!-- left loop -->
-        <path d="M40 25 C30 10 8 8 5 20 C2 30 18 36 40 25Z" fill="#950529" opacity=".9"/>
-        <!-- right loop -->
-        <path d="M40 25 C50 10 72 8 75 20 C78 30 62 36 40 25Z" fill="#950529" opacity=".9"/>
-        <!-- left tail -->
-        <path d="M40 25 C32 30 20 44 15 46 C12 47 14 43 18 40 C26 34 36 28 40 25Z" fill="#7a0420"/>
-        <!-- right tail -->
-        <path d="M40 25 C48 30 60 44 65 46 C68 47 66 43 62 40 C54 34 44 28 40 25Z" fill="#7a0420"/>
-        <!-- centre knot -->
-        <ellipse cx="40" cy="25" rx="5" ry="4" fill="#b8062e"/>
-        <!-- shine -->
-        <ellipse cx="38" cy="23" rx="2" ry="1.2" fill="rgba(255,255,255,.2)"/>
-      </svg>
-    </div>
-  </div>
-</div>
 
 <!-- FLOATING PARTICLES -->
 <canvas id="particles"></canvas>
@@ -499,9 +436,6 @@ footer{text-align:center;padding:4rem 2rem;border-top:1px solid rgba(209,194,171
 </footer>
 
 <script>
-// ─── INTRO OVERLAY ───
-setTimeout(()=>document.getElementById('intro-overlay').classList.add('done'),2800);
-
 // ─── TYPEWRITER ───
 (function(){
   const el=document.getElementById('heroEyebrow');
