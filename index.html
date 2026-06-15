@@ -39,7 +39,7 @@ nav.scrolled{background:rgba(64,10,22,.95);backdrop-filter:blur(12px)}
 .hero-bg{position:absolute;inset:0;width:100%;height:100%;background:radial-gradient(ellipse at center,rgba(149,5,41,.25) 0%,rgba(64,10,22,.95) 65%,#400A16 100%);z-index:1}
 .hero-content{position:relative;z-index:2}
 .hero-eyebrow{font-size:.75rem;letter-spacing:.4em;text-transform:uppercase;color:var(--cream);opacity:.6;margin-bottom:1.5rem;animation:fadeUp .8s .2s both}
-.hero-names{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,8vw,8rem);font-weight:500;font-style:italic;line-height:1.1;color:var(--ivory);text-shadow:0 0 60px rgba(201,168,76,.3);animation:fadeUp .8s .4s both;white-space:nowrap}
+.hero-names{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,8vw,8rem);font-weight:500;font-style:italic;line-height:1.1;color:var(--ivory);text-shadow:0 0 40px rgba(201,168,76,.6),0 0 80px rgba(201,168,76,.3),0 0 120px rgba(201,168,76,.15);animation:fadeUp .8s .4s both,goldPulse 3s 1.2s ease-in-out infinite;white-space:nowrap}
 .hero-amp{color:var(--burgundy);font-size:.8em}
 .hero-date{font-size:1rem;letter-spacing:.5em;text-transform:uppercase;margin-top:1.5rem;color:var(--cream);opacity:.7;animation:fadeUp .8s .6s both}
 .hero-line{width:80px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:1.8rem auto;animation:fadeUp .8s .7s both}
@@ -98,17 +98,7 @@ section{padding:6rem 2rem;max-width:1100px;margin:0 auto}
 @keyframes overlayFade{0%{opacity:1}100%{opacity:0;visibility:hidden;pointer-events:none}}
 @media(min-width:901px){#intro-overlay{display:none!important}}
 @media(max-width:900px){#intro-overlay{display:flex}}
-#invite{display:flex;justify-content:center;padding:5rem 2rem}
-.card-scene{width:340px;height:220px;perspective:900px}
-.card-3d{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .1s ease-out;cursor:pointer}
-.card-face{position:absolute;inset:0;border-radius:4px;backface-visibility:hidden;display:flex;align-items:center;justify-content:center}
-.card-front{background:var(--ivory);border:1px solid rgba(201,168,76,.4);box-shadow:0 30px 80px rgba(21,5,19,.6)}
-.card-back{background:var(--cream);transform:rotateY(180deg)}
-.card-ornament{position:absolute;inset:8px;border:1px solid rgba(149,5,41,.2);border-radius:3px;pointer-events:none}
-.card-inner{text-align:center;padding:1.5rem;color:var(--espresso)}
-.card-inner h2{font-family:'Playfair Display',serif;font-size:1.8rem;font-style:italic;margin-bottom:.3rem}
-.card-inner p{font-size:.8rem;letter-spacing:.15em;opacity:.7}
-.card-inner .date{margin-top:.6rem;font-size:.9rem;letter-spacing:.1em}
+
 
 /* ─── LOVE STORY CHAPTERS ─── */
 #story{max-width:1100px;margin:0 auto;padding:6rem 2rem}
@@ -160,17 +150,24 @@ section{padding:6rem 2rem;max-width:1100px;margin:0 auto}
 
 
 
+/* ─── COUNTDOWN ─── */
+#countdown{padding:3rem 2rem 0;text-align:center;position:relative;z-index:2}
+.countdown-row{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:1rem}
+.cd-block{display:flex;flex-direction:column;align-items:center;background:rgba(255,255,255,.04);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(201,168,76,.2);border-radius:12px;padding:1.2rem 1.6rem;min-width:90px;box-shadow:0 8px 32px rgba(0,0,0,.25),inset 0 1px 0 rgba(201,168,76,.1)}
+.cd-num{font-family:'Playfair Display',serif;font-size:2.8rem;font-style:italic;color:var(--ivory);line-height:1;text-shadow:0 0 20px rgba(201,168,76,.4)}
+.cd-label{font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);opacity:.7;margin-top:.4rem}
+
 /* ─── GIFTS ─── */
 .qr-wrap{margin-top:3rem}
 .gifts-row{display:flex;align-items:center;justify-content:center;gap:2rem;flex-wrap:wrap;margin-top:3rem}
-.qr-box{width:200px;height:200px;border:1px solid rgba(209,194,171,.2);border-radius:4px;padding:12px;background:var(--ivory);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.qr-box{width:200px;height:200px;border:1px solid rgba(209,194,171,.2);border-radius:12px;padding:12px;background:rgba(245,240,232,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 8px 32px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .qr-img{width:100%;height:100%;object-fit:contain;display:block}
 .gifts-divider{width:1px;height:200px;background:linear-gradient(to bottom,transparent,rgba(209,194,171,.35),transparent);flex-shrink:0}
 .bank-scene{width:200px;height:200px;perspective:900px;flex-shrink:0}
 .bank-card{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.25,.8,.25,1);cursor:pointer}
 .bank-face{position:absolute;inset:0;border-radius:8px;backface-visibility:hidden;display:flex;align-items:center;justify-content:center;border:1px solid rgba(201,168,76,.25)}
-.bank-front{background:linear-gradient(135deg,var(--burgundy),#6b0a1e);box-shadow:0 20px 50px rgba(0,0,0,.35)}
-.bank-back{background:var(--ivory);transform:rotateY(180deg)}
+.bank-front{background:linear-gradient(135deg,rgba(149,5,41,.85),rgba(107,10,30,.9));backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 20px 50px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.1)}
+.bank-back{background:rgba(245,240,232,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transform:rotateY(180deg);box-shadow:inset 0 1px 0 rgba(255,255,255,.6)}
 .bank-front-inner{text-align:center;color:var(--ivory);padding:1.2rem}
 .bank-front-inner p{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;opacity:.6;margin-bottom:.6rem}
 .bank-front-inner h4{font-family:'Playfair Display',serif;font-size:1.3rem;font-style:italic;line-height:1.3}
@@ -195,6 +192,7 @@ footer{text-align:center;padding:4rem 2rem;border-top:1px solid rgba(209,194,171
 @keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
 @keyframes bar{from{height:3px}to{height:14px}}
 @keyframes floatRing{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-12px) rotate(4deg)}}
+@keyframes goldPulse{0%,100%{text-shadow:0 0 40px rgba(201,168,76,.6),0 0 80px rgba(201,168,76,.3),0 0 120px rgba(201,168,76,.15)}50%{text-shadow:0 0 60px rgba(201,168,76,.9),0 0 120px rgba(201,168,76,.5),0 0 180px rgba(201,168,76,.25)}}
 
 /* ─── RESPONSIVE ─── */
 @media(max-width:900px){
@@ -204,9 +202,6 @@ footer{text-align:center;padding:4rem 2rem;border-top:1px solid rgba(209,194,171
 
   #hero{height:100vh}
   .hero-names{font-size:clamp(3rem,12vw,6rem)}
-
-  #invite{padding:3rem 1.5rem}
-  .card-scene{width:300px;height:200px}
 
   .chapter{grid-template-columns:1fr;gap:2rem;margin-bottom:3.5rem}
   .chapter .ch-deco{display:flex;justify-content:center;margin-bottom:1rem}
@@ -237,10 +232,6 @@ footer{text-align:center;padding:4rem 2rem;border-top:1px solid rgba(209,194,171
   .hero-eyebrow{font-size:.65rem}
   .hero-date{font-size:.8rem;letter-spacing:.3em}
   .hero-sub{font-size:.95rem}
-
-  #invite{padding:2.5rem 1rem}
-  .card-scene{width:280px;height:185px}
-  .card-inner h2{font-size:1.5rem}
 
   section{padding:4rem 1.2rem}
   .section-title{font-size:clamp(1.6rem,7vw,2.5rem)}
@@ -349,12 +340,15 @@ footer{text-align:center;padding:4rem 2rem;border-top:1px solid rgba(209,194,171
   <source src="audio/Michael Buble - Unforgettable (Lyrics).mp3" type="audio/mpeg"/>
 </audio>
 
+<!-- CURSOR TRAIL -->
+<canvas id="cursorTrail" style="position:fixed;inset:0;pointer-events:none;z-index:9999;"></canvas>
+
 <!-- HERO -->
 <section id="hero">
   <canvas class="hero-canvas" id="heroCanvas"></canvas>
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">We're getting married</p>
+    <p class="hero-eyebrow" id="heroEyebrow"></p>
     <h1 class="hero-names">Hosanna <span class="hero-amp">&</span> Jason</h1>
     <p class="hero-date">August 8, 2026</p>
     <div class="hero-line"></div>
@@ -363,26 +357,14 @@ footer{text-align:center;padding:4rem 2rem;border-top:1px solid rgba(209,194,171
   <div class="scroll-hint"><span>Scroll</span></div>
 </section>
 
-<!-- 3D INVITE CARD -->
-<div id="invite">
-  <div class="card-scene">
-    <div class="card-3d" id="card3d">
-      <div class="card-face card-front">
-        <div class="card-ornament"></div>
-        <div class="card-inner">
-          <p style="font-size:.65rem;letter-spacing:.3em;opacity:.5;margin-bottom:.5rem">YOU ARE INVITED</p>
-          <h2>H & J</h2>
-          <p class="date">August 8th, 2026</p>
-          <p style="margin-top:.4rem;font-size:.75rem;opacity:.55">Hover to reveal · Click to flip</p>
-        </div>
-      </div>
-      <div class="card-face card-back">
-        <div class="card-inner" style="color:var(--espresso)">
-          <p style="font-size:.9rem;font-style:italic;line-height:1.7;opacity:.8">"We're so excited to share this special moment with you. Your presence means the world to us."</p>
-          <p style="margin-top:1rem;font-family:'Playfair Display',serif;font-size:1.2rem">With Love, Hosanna & Jason</p>
-        </div>
-      </div>
-    </div>
+<!-- COUNTDOWN -->
+<div id="countdown">
+  <p class="section-tag" style="margin-bottom:.5rem">Time Until Forever</p>
+  <div class="countdown-row">
+    <div class="cd-block"><span class="cd-num" id="cd-days">000</span><span class="cd-label">Days</span></div>
+    <div class="cd-block"><span class="cd-num" id="cd-hours">00</span><span class="cd-label">Hours</span></div>
+    <div class="cd-block"><span class="cd-num" id="cd-mins">00</span><span class="cd-label">Minutes</span></div>
+    <div class="cd-block"><span class="cd-num" id="cd-secs">00</span><span class="cd-label">Seconds</span></div>
   </div>
 </div>
 
@@ -520,6 +502,70 @@ footer{text-align:center;padding:4rem 2rem;border-top:1px solid rgba(209,194,171
 // ─── INTRO OVERLAY ───
 setTimeout(()=>document.getElementById('intro-overlay').classList.add('done'),2800);
 
+// ─── TYPEWRITER ───
+(function(){
+  const el=document.getElementById('heroEyebrow');
+  const txt="We're getting married";
+  let i=0;
+  setTimeout(function type(){
+    el.textContent=txt.slice(0,++i);
+    if(i<txt.length)setTimeout(type,80);
+  },400);
+})();
+
+// ─── COUNTDOWN ───
+(function(){
+  const target=new Date('2026-08-08T00:00:00');
+  function tick(){
+    const diff=target-Date.now();
+    if(diff<=0){document.getElementById('countdown').innerHTML='<p class="section-tag">Today is the day! 🎉</p>';return;}
+    const d=Math.floor(diff/864e5);
+    const h=Math.floor(diff%864e5/36e5);
+    const m=Math.floor(diff%36e5/6e4);
+    const s=Math.floor(diff%6e4/1e3);
+    document.getElementById('cd-days').textContent=String(d).padStart(3,'0');
+    document.getElementById('cd-hours').textContent=String(h).padStart(2,'0');
+    document.getElementById('cd-mins').textContent=String(m).padStart(2,'0');
+    document.getElementById('cd-secs').textContent=String(s).padStart(2,'0');
+  }
+  tick();setInterval(tick,1000);
+})();
+
+// ─── CURSOR TRAIL ───
+(function(){
+  const c=document.getElementById('cursorTrail');
+  const ctx=c.getContext('2d');
+  c.width=window.innerWidth;c.height=window.innerHeight;
+  window.addEventListener('resize',()=>{c.width=window.innerWidth;c.height=window.innerHeight;});
+  const hearts=[];
+  const colors=['#c9a84c','#950529','#e8c97a','#b3063a'];
+  function heartPath(ctx,x,y,size){
+    ctx.save();ctx.translate(x,y);ctx.scale(size,size);
+    ctx.beginPath();ctx.moveTo(0,-0.5);
+    ctx.bezierCurveTo(0.5,-1,1.2,0.2,0,1);
+    ctx.bezierCurveTo(-1.2,0.2,-0.5,-1,0,-0.5);
+    ctx.closePath();ctx.restore();
+  }
+  window.addEventListener('mousemove',e=>{
+    if(Math.random()>.55)return;
+    hearts.push({x:e.clientX,y:e.clientY,size:Math.random()*7+3,alpha:1,vy:-(Math.random()*1.5+.5),vx:(Math.random()-.5)*.8,color:colors[Math.floor(Math.random()*colors.length)]});
+  });
+  function draw(){
+    ctx.clearRect(0,0,c.width,c.height);
+    for(let i=hearts.length-1;i>=0;i--){
+      const h=hearts[i];
+      h.y+=h.vy;h.x+=h.vx;h.alpha-=.022;
+      if(h.alpha<=0){hearts.splice(i,1);continue;}
+      ctx.globalAlpha=h.alpha;
+      heartPath(ctx,h.x,h.y,h.size);
+      ctx.fillStyle=h.color;ctx.fill();
+    }
+    ctx.globalAlpha=1;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
 // ─── PARTICLES ───
 (function(){
   const c=document.getElementById('particles');
@@ -597,22 +643,7 @@ setTimeout(()=>document.getElementById('intro-overlay').classList.add('done'),28
   frame();
 })();
 
-// ─── 3D CARD TILT ───
-const card=document.getElementById('card3d');
-const scene=card.parentElement;
-let flipped=false;
-scene.addEventListener('mousemove',e=>{
-  if(flipped)return;
-  const r=scene.getBoundingClientRect();
-  const x=((e.clientX-r.left)/r.width-.5)*30;
-  const y=-((e.clientY-r.top)/r.height-.5)*20;
-  card.style.transform=`rotateY(${x}deg) rotateX(${y}deg)`;
-});
-scene.addEventListener('mouseleave',()=>{if(!flipped)card.style.transform=''});
-card.addEventListener('click',()=>{
-  flipped=!flipped;
-  card.style.transform=flipped?'rotateY(180deg)':'';
-});
+
 
 // ─── SCROLL NAV ───
 window.addEventListener('scroll',()=>{
