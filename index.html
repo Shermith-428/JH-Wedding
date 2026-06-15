@@ -39,7 +39,7 @@ nav.scrolled{background:rgba(64,10,22,.95);backdrop-filter:blur(12px)}
 .hero-bg{position:absolute;inset:0;width:100%;height:100%;background:radial-gradient(ellipse at center,rgba(149,5,41,.25) 0%,rgba(64,10,22,.95) 65%,#400A16 100%);z-index:1}
 .hero-content{position:relative;z-index:2}
 .hero-eyebrow{font-size:.75rem;letter-spacing:.4em;text-transform:uppercase;color:var(--cream);opacity:.6;margin-bottom:1.5rem;animation:fadeUp .8s .2s both}
-.hero-names{font-family:'Playfair Display',serif;font-size:clamp(3.5rem,9vw,8rem);font-weight:500;font-style:italic;line-height:1;color:var(--ivory);text-shadow:0 0 60px rgba(201,168,76,.3);animation:fadeUp .8s .4s both}
+.hero-names{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,8vw,8rem);font-weight:500;font-style:italic;line-height:1.1;color:var(--ivory);text-shadow:0 0 60px rgba(201,168,76,.3);animation:fadeUp .8s .4s both;white-space:nowrap}
 .hero-amp{color:var(--burgundy);font-size:.8em}
 .hero-date{font-size:1rem;letter-spacing:.5em;text-transform:uppercase;margin-top:1.5rem;color:var(--cream);opacity:.7;animation:fadeUp .8s .6s both}
 .hero-line{width:80px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:1.8rem auto;animation:fadeUp .8s .7s both}
@@ -72,7 +72,33 @@ section{padding:6rem 2rem;max-width:1100px;margin:0 auto}
 .section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:500;font-style:italic;color:var(--ivory);line-height:1.1;margin-bottom:1.5rem}
 .divider{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:1.5rem 0}
 
-/* ─── INVITE CARD 3D ─── */
+/* ─── CARD OPENING INTRO ─── */
+#intro-overlay{position:fixed;inset:0;z-index:999;display:flex;align-items:center;justify-content:center;background:#400A16;pointer-events:none}
+.intro-card{width:min(340px,88vw);height:220px;position:relative;transform-style:preserve-3d;animation:cardOpen 1.2s 0.4s cubic-bezier(.4,0,.2,1) forwards}
+.intro-top,.intro-bottom{position:absolute;left:0;width:100%;height:50%;background:var(--ivory);border:1px solid rgba(201,168,76,.4);overflow:hidden;display:flex;align-items:center;justify-content:center;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.intro-top{top:0;border-radius:6px 6px 0 0;transform-origin:top center;animation:flapUp 0.9s 1.2s cubic-bezier(.4,0,.2,1) forwards}
+.intro-bottom{bottom:0;border-radius:0 0 6px 6px}
+.intro-names{position:absolute;z-index:2;text-align:center;opacity:0;animation:namePop 0.7s 1.9s cubic-bezier(.34,1.56,.64,1) forwards}
+.intro-names h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,6vw,2.4rem);font-style:italic;color:var(--espresso);line-height:1.2}
+.intro-names p{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--espresso);opacity:.6;margin-top:.4rem}
+.intro-ornament{position:absolute;inset:8px;border:1px solid rgba(149,5,41,.15);border-radius:4px;pointer-events:none}
+#intro-overlay.done{animation:overlayFade .6s 2.8s forwards}
+@keyframes cardOpen{
+  0%{transform:scale(.85) rotateX(8deg);opacity:0}
+  100%{transform:scale(1) rotateX(0deg);opacity:1}
+}
+@keyframes flapUp{
+  0%{transform:rotateX(0deg)}
+  100%{transform:rotateX(-180deg)}
+}
+@keyframes namePop{
+  0%{opacity:0;transform:scale(.6) translateY(10px)}
+  100%{opacity:1;transform:scale(1) translateY(0)}
+}
+@keyframes overlayFade{
+  0%{opacity:1;pointer-events:all}
+  100%{opacity:0;pointer-events:none;visibility:hidden}
+}
 #invite{display:flex;justify-content:center;padding:5rem 2rem}
 .card-scene{width:340px;height:220px;perspective:900px}
 .card-3d{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .1s ease-out;cursor:pointer}
@@ -208,7 +234,7 @@ footer{text-align:center;padding:4rem 2rem;border-top:1px solid rgba(209,194,171
   .nav-links{gap:1rem}
   .nav-links a{font-size:.65rem;letter-spacing:.1em}
 
-  .hero-names{font-size:clamp(2.4rem,13vw,4.5rem)}
+  .hero-names{font-size:clamp(1.8rem,10vw,3.5rem);white-space:normal;word-break:break-word}
   .hero-eyebrow{font-size:.65rem}
   .hero-date{font-size:.8rem;letter-spacing:.3em}
   .hero-sub{font-size:.95rem}
@@ -252,6 +278,23 @@ footer{text-align:center;padding:4rem 2rem;border-top:1px solid rgba(209,194,171
 </style>
 </head>
 <body>
+
+<!-- INTRO CARD OVERLAY -->
+<div id="intro-overlay">
+  <div class="intro-card">
+    <div class="intro-top">
+      <div class="intro-ornament"></div>
+      <p style="font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:#400A16;opacity:.5">You are invited</p>
+    </div>
+    <div class="intro-bottom">
+      <div class="intro-ornament"></div>
+    </div>
+    <div class="intro-names">
+      <h2>Hosanna &amp; Jason</h2>
+      <p>August 8th, 2026</p>
+    </div>
+  </div>
+</div>
 
 <!-- FLOATING PARTICLES -->
 <canvas id="particles"></canvas>
@@ -453,6 +496,9 @@ footer{text-align:center;padding:4rem 2rem;border-top:1px solid rgba(209,194,171
 </footer>
 
 <script>
+// ─── INTRO OVERLAY ───
+setTimeout(()=>document.getElementById('intro-overlay').classList.add('done'),2800);
+
 // ─── PARTICLES ───
 (function(){
   const c=document.getElementById('particles');
