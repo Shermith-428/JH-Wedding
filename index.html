@@ -400,7 +400,7 @@ footer{text-align:center;padding:4rem 2rem;border-top:1px solid rgba(209,194,171
   <p style="font-size:1.05rem;line-height:2;opacity:.75">However, if you feel moved to give, we would be deeply grateful for a contribution towards our future together. As we begin this new chapter, your generosity will help us build the life we have always dreamed of.</p>
   <div class="gifts-row reveal">
     <div class="qr-box">
-      <img src="bank Qr.jpeg" alt="Payment QR Code" class="qr-img"/>
+      <img src="bank%20Qr.jpeg" alt="Payment QR Code" class="qr-img"/>
     </div>
     <div class="gifts-divider"></div>
     <div class="bank-scene">
@@ -601,7 +601,7 @@ document.querySelectorAll('.reveal,.chapter').forEach(el=>obs.observe(el));
 
 // ─── GALLERY ───
 const grid=document.getElementById('galleryGrid');
-const total=window.innerWidth<=600?17:21;
+const total=37;
 const imgObs=new IntersectionObserver(entries=>entries.forEach(e=>{
   if(e.isIntersecting){e.target.classList.add('visible');imgObs.unobserve(e.target)}
 }),{threshold:.1});
