@@ -89,15 +89,11 @@ section{padding:6rem 2rem;max-width:1100px;margin:0 auto}
 .intro-corner.tr{top:6px;right:6px;transform:scaleX(-1)}
 .intro-corner.bl{bottom:6px;left:6px;transform:scaleY(-1)}
 .intro-corner.br{bottom:6px;right:6px;transform:scale(-1)}
-.intro-names{position:absolute;z-index:2;text-align:center;opacity:0;animation:namePop .45s 1.1s cubic-bezier(.34,1.56,.64,1) forwards;width:100%}
-.intro-names h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,7vw,2.6rem);font-style:italic;color:#400A16;line-height:1.2;text-shadow:0 2px 12px rgba(201,168,76,.3)}
-.intro-names span{display:block;font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;color:#400A16;opacity:.55;margin-top:.4rem}
-.intro-seal{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:36px;height:36px;background:var(--burgundy);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:5;box-shadow:0 4px 16px rgba(149,5,41,.5);opacity:0;animation:sealFade .3s .5s forwards}
-.intro-seal svg{width:16px;height:16px;fill:#f5f0e8}
+.intro-seal{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;opacity:0;animation:sealFade .3s .5s forwards}
+.intro-bow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;opacity:0;animation:sealFade .4s .65s forwards;filter:drop-shadow(0 4px 12px rgba(149,5,41,.6))}
 #intro-overlay.done{animation:overlayFade .5s forwards}
 @keyframes cardOpen{0%{transform:scale(.82) rotateX(6deg);opacity:0}100%{transform:scale(1) rotateX(0);opacity:1}}
 @keyframes flapUp{0%{transform:rotateX(0deg)}100%{transform:rotateX(-175deg)}}
-@keyframes namePop{0%{opacity:0;transform:scale(.65) translateY(8px)}100%{opacity:1;transform:scale(1) translateY(0)}}
 @keyframes sealFade{0%{opacity:0;transform:translate(-50%,-50%) scale(.5)}100%{opacity:1;transform:translate(-50%,-50%) scale(1)}}
 @keyframes overlayFade{0%{opacity:1}100%{opacity:0;visibility:hidden;pointer-events:none}}
 @media(min-width:901px){#intro-overlay{display:none!important}}
@@ -302,9 +298,21 @@ footer{text-align:center;padding:4rem 2rem;border-top:1px solid rgba(209,194,171
       </div>
     </div>
     <div class="intro-seal"><svg viewBox="0 0 24 24"><path d="M12 2l1.8 5.4H20l-4.9 3.6 1.8 5.4L12 13l-4.9 3.4 1.8-5.4L4 7.4h6.2z"/></svg></div>
-    <div class="intro-names">
-      <h2>Hosanna &amp; Jason</h2>
-      <span>The Wedding</span>
+    <div class="intro-bow">
+      <svg viewBox="0 0 80 50" width="80" height="50" fill="none">
+        <!-- left loop -->
+        <path d="M40 25 C30 10 8 8 5 20 C2 30 18 36 40 25Z" fill="#950529" opacity=".9"/>
+        <!-- right loop -->
+        <path d="M40 25 C50 10 72 8 75 20 C78 30 62 36 40 25Z" fill="#950529" opacity=".9"/>
+        <!-- left tail -->
+        <path d="M40 25 C32 30 20 44 15 46 C12 47 14 43 18 40 C26 34 36 28 40 25Z" fill="#7a0420"/>
+        <!-- right tail -->
+        <path d="M40 25 C48 30 60 44 65 46 C68 47 66 43 62 40 C54 34 44 28 40 25Z" fill="#7a0420"/>
+        <!-- centre knot -->
+        <ellipse cx="40" cy="25" rx="5" ry="4" fill="#b8062e"/>
+        <!-- shine -->
+        <ellipse cx="38" cy="23" rx="2" ry="1.2" fill="rgba(255,255,255,.2)"/>
+      </svg>
     </div>
   </div>
 </div>
