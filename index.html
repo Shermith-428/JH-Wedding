@@ -560,7 +560,7 @@ document.querySelectorAll('.reveal,.chapter').forEach(el=>obs.observe(el));
 
 // ─── GALLERY ───
 const grid=document.getElementById('galleryGrid');
-const total=26;
+const total=window.innerWidth<=600?16:21;
 const imgObs=new IntersectionObserver(entries=>entries.forEach(e=>{
   if(e.isIntersecting){e.target.classList.add('visible');imgObs.unobserve(e.target)}
 }),{threshold:.1});
