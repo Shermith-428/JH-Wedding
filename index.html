@@ -480,10 +480,19 @@ footer{text-align:center;padding:4rem 2rem;border-top:1px solid rgba(209,194,171
     ctx.bezierCurveTo(-1.2,0.2,-0.5,-1,0,-0.5);
     ctx.closePath();ctx.restore();
   }
+  function spawnHeart(x,y){
+    hearts.push({x,y,size:Math.random()*7+3,alpha:1,vy:-(Math.random()*1.5+.5),vx:(Math.random()-.5)*.8,color:colors[Math.floor(Math.random()*colors.length)]});
+  }
   window.addEventListener('mousemove',e=>{
     if(Math.random()>.55)return;
-    hearts.push({x:e.clientX,y:e.clientY,size:Math.random()*7+3,alpha:1,vy:-(Math.random()*1.5+.5),vx:(Math.random()-.5)*.8,color:colors[Math.floor(Math.random()*colors.length)]});
+    spawnHeart(e.clientX,e.clientY);
   });
+  window.addEventListener('touchmove',e=>{
+    Array.from(e.touches).forEach(t=>{if(Math.random()>.4)spawnHeart(t.clientX,t.clientY);});
+  },{passive:true});
+  window.addEventListener('touchstart',e=>{
+    Array.from(e.touches).forEach(t=>{for(let i=0;i<3;i++)spawnHeart(t.clientX,t.clientY);});
+  },{passive:true});
   function draw(){
     ctx.clearRect(0,0,c.width,c.height);
     for(let i=hearts.length-1;i>=0;i--){
