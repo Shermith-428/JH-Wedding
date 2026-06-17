@@ -131,7 +131,17 @@ section{padding:6rem 2rem;max-width:1100px;margin:0 auto}
 
 
 
-/* ─── COUNTDOWN ─── */
+/* ─── UPLOAD SECTION ─── */
+.upload-row{display:flex;align-items:center;justify-content:center;gap:2.5rem;flex-wrap:wrap;margin-top:2.5rem}
+.upload-qr-box{width:180px;height:180px;border:1px solid rgba(209,194,171,.2);border-radius:12px;padding:10px;background:rgba(245,240,232,.92);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 8px 32px rgba(0,0,0,.25)}
+.upload-qr-box img{width:100%;height:100%;object-fit:contain;display:block}
+.upload-qr-placeholder{width:100%;height:100%;border:1.5px dashed rgba(64,10,22,.25);border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem}
+.upload-qr-placeholder span{font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:#400A16;opacity:.4}
+.upload-info{text-align:left;max-width:340px}
+.upload-info p{font-size:1rem;line-height:1.9;opacity:.8;font-weight:300}
+.btn-upload{display:inline-flex;align-items:center;gap:.6rem;margin-top:1.2rem;background:var(--burgundy);color:var(--ivory);padding:.75rem 1.8rem;font-family:'Lato',sans-serif;font-size:.85rem;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:background .3s,transform .2s}
+.btn-upload:hover{background:#b3063a;transform:translateY(-2px)}
+.btn-upload svg{width:16px;height:16px;stroke:var(--ivory);fill:none;flex-shrink:0}
 #countdown{padding:3rem 2rem 0;text-align:center;position:relative;z-index:2}
 .countdown-row{display:flex;justify-content:center;gap:1.5rem;flex-wrap:nowrap;margin-top:1rem}
 .cd-block{display:flex;flex-direction:column;align-items:center;background:rgba(255,255,255,.04);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(201,168,76,.2);border-radius:12px;padding:1.2rem 1.6rem;min-width:90px;box-shadow:0 8px 32px rgba(0,0,0,.25),inset 0 1px 0 rgba(201,168,76,.1)}
@@ -264,6 +274,7 @@ footer{text-align:center;padding:4rem 2rem;border-top:1px solid rgba(209,194,171
   <ul class="nav-links">
     <li><a href="#story">Love Story</a></li>
     <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#upload">Photos</a></li>
     <li><a href="#location">Location</a></li>
 
   </ul>
@@ -381,6 +392,29 @@ footer{text-align:center;padding:4rem 2rem;border-top:1px solid rgba(209,194,171
   <span class="lb-close" onclick="closeLightbox()"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#d1c2ab" stroke-width="1.8" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
   <img id="lbImg" src="" alt=""/>
 </div>
+
+<!-- PHOTO UPLOAD -->
+<section id="upload" class="reveal" style="max-width:780px;margin:0 auto;padding:4rem 2rem;text-align:center">
+  <p class="section-tag">Share Your Shots</p>
+  <h2 class="section-title">Upload Your Photos</h2>
+  <div class="divider" style="margin:1.5rem auto"></div>
+  <p style="font-size:1.05rem;line-height:2;opacity:.8;font-weight:300">Did you capture a special moment on the day? We'd love to see it. Scan the QR code or tap the button below to upload your photos to our shared Google Drive folder.</p>
+  <div class="upload-row">
+    <div class="upload-qr-box">
+      <div class="upload-qr-placeholder">
+        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#400A16" stroke-width="1.2" opacity=".35"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="4" height="4" rx=".5"/><line x1="18" y1="18" x2="21" y2="18"/><line x1="21" y1="14" x2="21" y2="18"/></svg>
+        <span>QR coming soon</span>
+      </div>
+    </div>
+    <div class="upload-info">
+      <p>Scan the QR code with your phone camera to go directly to our shared folder &mdash; no sign-in needed. Simply tap &ldquo;Upload&rdquo; and share your favourite moments with us.</p>
+      <a class="btn-upload" href="YOUR_GOOGLE_DRIVE_LINK_HERE" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        Upload Photos
+      </a>
+    </div>
+  </div>
+</section>
 
 <!-- LOCATION -->
 <section id="location" class="reveal" style="max-width:900px;margin:0 auto;padding:6rem 2rem;text-align:center">
