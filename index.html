@@ -118,11 +118,17 @@ section{padding:6rem 2rem;max-width:1100px;margin:0 auto}
 .btn-directions:hover{background:#b3063a;transform:translateY(-2px)}
 
 /* ─── GALLERY ─── */
-#gallery{max-width:1200px;margin:0 auto;padding:6rem 2rem}
-.gallery-grid{columns:3;gap:12px;margin-top:2rem}
-.gallery-grid img{width:100%;display:block;margin-bottom:12px;border-radius:2px;cursor:pointer;opacity:0;transform:translateY(30px);transition:opacity .6s,transform .6s,filter .4s;filter:brightness(.88) sepia(.08)}
-.gallery-grid img.visible{opacity:1;transform:translateY(0)}
-.gallery-grid img:hover{filter:brightness(1) sepia(0);transform:scale(1.03) translateY(0)}
+#gallery{max-width:100%;margin:0 auto;padding:6rem 0}
+#gallery .reveal{padding:0 2rem;max-width:1200px;margin:0 auto}
+.gallery-track-wrap{overflow:hidden;width:100%;margin-top:2rem;position:relative}
+.gallery-track-wrap::before,.gallery-track-wrap::after{content:'';position:absolute;top:0;width:80px;height:100%;z-index:2;pointer-events:none}
+.gallery-track-wrap::before{left:0;background:linear-gradient(to right,var(--espresso),transparent)}
+.gallery-track-wrap::after{right:0;background:linear-gradient(to left,var(--espresso),transparent)}
+.gallery-track{display:flex;gap:12px;width:max-content;animation:slideLoop 60s linear infinite}
+.gallery-track:hover{animation-play-state:paused}
+.gallery-track img{height:260px;width:auto;border-radius:4px;cursor:pointer;flex-shrink:0;filter:brightness(.88) sepia(.08);transition:filter .3s,transform .3s}
+.gallery-track img:hover{filter:brightness(1) sepia(0);transform:scale(1.04)}
+@keyframes slideLoop{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 .lightbox{display:none;position:fixed;inset:0;z-index:300;background:rgba(64,10,22,.97);align-items:center;justify-content:center}
 .lightbox.open{display:flex}
 .lightbox img{max-width:90vw;max-height:90vh;border-radius:4px;box-shadow:0 0 80px rgba(149,5,41,.4)}
@@ -187,7 +193,9 @@ footer{text-align:center;padding:4rem 2rem;border-top:1px solid rgba(209,194,171
 
 /* ─── RESPONSIVE ─── */
 @media(max-width:900px){
-  nav{padding:.8rem 1.5rem}
+  .gallery-track img{height:200px}
+  .gallery-track-wrap::before,.gallery-track-wrap::after{width:40px}
+}
   .nav-links{gap:1.5rem}
   .nav-links a{font-size:.75rem}
 
@@ -214,7 +222,7 @@ footer{text-align:center;padding:4rem 2rem;border-top:1px solid rgba(209,194,171
 }
 
 @media(max-width:600px){
-  .countdown-row{gap:.6rem}
+  .gallery-track img{height:160px}
   .cd-block{padding:.9rem .7rem;min-width:0;flex:1}
   .cd-num{font-size:1.8rem}
   .cd-label{font-size:.5rem;letter-spacing:.2em}
@@ -380,11 +388,15 @@ footer{text-align:center;padding:4rem 2rem;border-top:1px solid rgba(209,194,171
 </div>
 
 <!-- GALLERY -->
-<section id="gallery" class="reveal">
-  <p class="section-tag">Memories</p>
-  <h2 class="section-title">Our Gallery</h2>
-  <div class="divider"></div>
-  <div class="gallery-grid" id="galleryGrid"></div>
+<section id="gallery">
+  <div class="reveal" style="padding:0 2rem;max-width:1200px;margin:0 auto">
+    <p class="section-tag">Memories</p>
+    <h2 class="section-title">Our Gallery</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="gallery-track-wrap">
+    <div class="gallery-track" id="galleryTrack"></div>
+  </div>
 </section>
 
 <!-- LIGHTBOX -->
@@ -644,22 +656,20 @@ const obs=new IntersectionObserver(entries=>entries.forEach(e=>{
 document.querySelectorAll('.reveal,.chapter').forEach(el=>obs.observe(el));
 
 // ─── GALLERY ───
-const grid=document.getElementById('galleryGrid');
+const track=document.getElementById('galleryTrack');
 const total=37;
 const skip=new Set([12]);
-const imgObs=new IntersectionObserver(entries=>entries.forEach(e=>{
-  if(e.isIntersecting){e.target.classList.add('visible');imgObs.unobserve(e.target)}
-}),{threshold:.1});
-for(let i=1;i<=total;i++){if(skip.has(i))continue;
+const photos=[];
+for(let i=1;i<=total;i++){if(!skip.has(i))photos.push(i);}
+// duplicate for seamless loop
+[...photos,...photos].forEach(i=>{
   const img=document.createElement('img');
   img.src=`images/photo${i}.jpeg`;
   img.alt=`Photo ${i}`;
   img.loading='lazy';
-  img.style.transitionDelay=`${((i-1)%3)*0.1}s`;
   img.onclick=()=>openLightbox(`images/photo${i}.jpeg`);
-  grid.appendChild(img);
-  imgObs.observe(img);
-}
+  track.appendChild(img);
+});
 function openLightbox(src){
   document.getElementById('lbImg').src=src;
   document.getElementById('lightbox').classList.add('open');
