@@ -193,15 +193,13 @@ footer{text-align:center;padding:4rem 2rem;border-top:1px solid rgba(209,194,171
 
 /* ─── RESPONSIVE ─── */
 @media(max-width:900px){
+  nav{padding:.8rem 1.5rem}
+  .nav-links{gap:1.2rem}
+  .nav-links a{font-size:.72rem}
   .gallery-track img{height:200px}
   .gallery-track-wrap::before,.gallery-track-wrap::after{width:40px}
-}
-  .nav-links{gap:1.5rem}
-  .nav-links a{font-size:.75rem}
-
   #hero{height:100vh}
   .hero-names{font-size:clamp(3rem,12vw,6rem)}
-
   .chapter{grid-template-columns:1fr;gap:2rem;margin-bottom:3.5rem}
   .chapter .ch-deco{display:flex;justify-content:center;margin-bottom:1rem}
   .ch-ornament{width:120px;height:120px}
@@ -209,36 +207,28 @@ footer{text-align:center;padding:4rem 2rem;border-top:1px solid rgba(209,194,171
   .chapter.from-right .ch-deco{order:-1}
   .ch-title{font-size:1.6rem}
   .ch-body{font-size:.95rem}
-
   #location iframe{height:320px}
-
-  .gallery-grid{columns:2;gap:8px}
-  .gallery-grid img{margin-bottom:8px}
-
   .gifts-row{gap:1.5rem}
   .gifts-divider{width:80%;height:1px;background:linear-gradient(to right,transparent,rgba(209,194,171,.35),transparent)}
   .qr-box{width:170px;height:170px}
   .bank-scene{width:170px;height:170px}
 }
-
 @media(max-width:600px){
+  nav{padding:.6rem .8rem}
+  .nav-logo{font-size:.95rem;letter-spacing:.1em}
+  .nav-links{gap:.6rem}
+  .nav-links a{font-size:.58rem;letter-spacing:.08em}
   .gallery-track img{height:160px}
+  .countdown-row{gap:.6rem}
   .cd-block{padding:.9rem .7rem;min-width:0;flex:1}
   .cd-num{font-size:1.8rem}
   .cd-label{font-size:.5rem;letter-spacing:.2em}
-}
-  .nav-logo{font-size:1.1rem}
-  .nav-links{gap:1rem}
-  .nav-links a{font-size:.65rem;letter-spacing:.1em}
-
   .hero-names{font-size:clamp(1.8rem,10vw,3.5rem);white-space:normal;word-break:break-word}
   .hero-eyebrow{font-size:.65rem}
   .hero-date{font-size:.8rem;letter-spacing:.3em}
   .hero-sub{font-size:.95rem}
-
   section{padding:4rem 1.2rem}
   .section-title{font-size:clamp(1.6rem,7vw,2.5rem)}
-
   #story{padding:4rem 1.2rem}
   .story-header{margin-bottom:2.5rem}
   .chapter{gap:1.5rem;margin-bottom:3rem}
@@ -246,26 +236,19 @@ footer{text-align:center;padding:4rem 2rem;border-top:1px solid rgba(209,194,171
   .ch-ornament svg{width:30px;height:30px}
   .ch-title{font-size:1.4rem}
   .ch-label{font-size:.6rem}
-
   #location{padding:4rem 1.2rem}
   #location iframe{height:280px}
   .btn-directions{font-size:.8rem;padding:.65rem 1.5rem}
-
-  .gallery-grid{columns:2;gap:6px}
-  .gallery-grid img{margin-bottom:6px}
-
   #gifts{padding:4rem 1.2rem}
   .gifts-row{flex-direction:column;align-items:center;gap:1.5rem}
   .gifts-divider{width:60%;height:1px;background:linear-gradient(to right,transparent,rgba(209,194,171,.35),transparent)}
   .qr-box{width:160px;height:160px}
   .bank-scene{width:160px;height:160px}
   .bank-front-inner h4{font-size:1.1rem}
-
   .audio-player{bottom:1rem;right:1rem;padding:.5rem .9rem .5rem .5rem}
   .play-btn{width:36px;height:36px}
   .audio-title{font-size:.65rem}
   .audio-artist{font-size:.6rem}
-
   footer{padding:3rem 1.2rem;font-size:.8rem}
 }
 </style>
